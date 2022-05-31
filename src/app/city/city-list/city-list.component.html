@@ -1,0 +1,33 @@
+<h2>City List</h2>
+<h3><a routerLink="./create">Add City</a></h3>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Image</th>
+    <th scope="col">City</th>
+    <th scope="col">Area</th>
+    <th scope="col">Popular</th>
+    <th scope="col">Description</th>
+    <th scope="col">National</th>
+    <th colspan="2">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let city of cities, index as i">
+    <th scope="row">{{i + 1}}</th>
+    <td><img src="http://localhost:8080/image/{{city.image}}" width="100" alt=""></td>
+    <td>{{city.name}}</td>
+    <td>{{city.area}}</td>
+    <td>{{city.popular}}</td>
+    <td>{{city.description}}</td>
+    <td>{{city.province.nameProvince}}</td>
+    <td><a [routerLink]="['/city/update', city.id]">Update</a></td>
+    <td><a [routerLink]="['/city/delete', city.id]">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+

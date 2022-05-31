@@ -1,0 +1,58 @@
+<h1>Add City Information</h1>
+<!--<button><a routerLink="/city">Home</a></button>-->
+<button class="btn"><a routerLink="/city" >Home</a></button>
+<form role="form" [formGroup]="cityForm" (ngSubmit)="addCity()">
+  <div class="form-group">
+    <label>City Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name">
+    <div *ngIf="nameControl.touched && nameControl.invalid">
+      <p style="color: red" *ngIf="nameControl.errors?.['required']">
+        Please enter the name of the city
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Area:</label>
+    <input type="text" class="form-control" id="area" placeholder="Area" formControlName="area">
+    <div *ngIf="areaControl.touched && areaControl.invalid">
+      <p style="color: red" *ngIf="areaControl.errors?.['required']">
+        Please enter the area
+      </p>
+      <p style="color: red" *ngIf="areaControl.errors?.['pattern']">
+        Only Number!!!
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Population</label>
+    <input type="text" class="form-control" id="popular" placeholder="Popular" formControlName="popular">
+    <div *ngIf="popularControl.touched && popularControl.invalid">
+      <p style="color: red" *ngIf="popularControl.errors?.['required']">
+        Please enter the popular
+      </p>
+      <p style="color: red" *ngIf="popularControl.errors?.['pattern']">
+        Only Number!!!
+      </p>
+  </div>
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input type="file" id="image" (change)="onFileSelected($event)">
+  </div>
+  <div class="form-group">
+    <label>Province</label>
+    <select  id="province" formControlName="province">
+      <option [value]="null" disabled>Chọn thành phố</option>
+      <ng-container *ngFor="let p of provinces">
+        <option  [value]="p.id">{{p.nameProvince}}</option>
+      </ng-container>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <textarea class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-block">Add City</button>
+  </div>
+  </div>
+</form>
