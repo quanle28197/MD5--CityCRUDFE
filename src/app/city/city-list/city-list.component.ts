@@ -4,6 +4,8 @@ import {CityService} from "../../service/city.service";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
 
+declare var $: any;
+
 @Component({
   selector: 'app-city-list',
   templateUrl: './city-list.component.html',
@@ -20,6 +22,18 @@ export class CityListComponent implements OnInit {
   showAllCity() {
     this.cityService.getAll().subscribe((data) => {
       this.cities = data;
+      $(function() {
+        $('#city').DataTable({
+          'paging': true,
+          'lengthChange': false,
+          'searching': true,
+          'ordering': true,
+          'info': true,
+          'pageLength': 5,
+          'autoWidth': false,
+          'responsive': true,
+        });
+      });
     }, (error => {
       var Toast = Swal.mixin({
         toast: true,
